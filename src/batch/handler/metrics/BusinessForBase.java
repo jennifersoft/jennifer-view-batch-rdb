@@ -3,7 +3,6 @@ package batch.handler.metrics;
 import batch.base.IDatabaseLegacy;
 import batch.base.IDataLegacy;
 import batch.util.DBUtility;
-import com.aries.view.dao.json.DB;
 import com.aries.view.extension.data.MetricsAsBusiness;
 import com.aries.view.extension.data.Model;
 import com.aries.view.extension.handler.Batch;
