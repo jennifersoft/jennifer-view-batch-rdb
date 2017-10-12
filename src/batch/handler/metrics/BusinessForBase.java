@@ -3,6 +3,7 @@ package batch.handler.metrics;
 import batch.base.IDatabaseLegacy;
 import batch.base.IDataLegacy;
 import batch.util.DBUtility;
+import com.aries.view.dao.json.DB;
 import com.aries.view.extension.data.MetricsAsBusiness;
 import com.aries.view.extension.data.Model;
 import com.aries.view.extension.handler.Batch;
@@ -32,17 +33,10 @@ public abstract class BusinessForBase implements Batch, IDataLegacy {
     @Override
     public void process(Model[] models) {
         long time = System.currentTimeMillis();
+        String query = DBUtility.createInsertQuery(defaultTableName, 33);
 
         Connection dbConnection = null;
         PreparedStatement statement = null;
-
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 33; i++) {
-            if(i > 0) sb.append(",");
-            sb.append("?");
-        }
-
-        String query = "INSERT INTO " + defaultTableName + " VALUES(" + sb.toString() + ")";
 
         try {
             dbConnection = DBUtility.getDBConnection(getExtensionId(), getDatabaseInfo().getDriverName());

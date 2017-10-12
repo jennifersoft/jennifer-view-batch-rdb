@@ -32,17 +32,10 @@ public abstract class InstanceForBase implements Batch, IDataLegacy {
     @Override
     public void process(Model[] models) {
         long time = System.currentTimeMillis();
+        String query = DBUtility.createInsertQuery(defaultTableName, 58);
 
         Connection dbConnection = null;
         PreparedStatement statement = null;
-
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 58; i++) {
-            if(i > 0) sb.append(",");
-            sb.append("?");
-        }
-
-        String query = "INSERT INTO " + defaultTableName + " VALUES(" + sb.toString() + ")";
 
         try {
             dbConnection = DBUtility.getDBConnection(getExtensionId(), getDatabaseInfo().getDriverName());
