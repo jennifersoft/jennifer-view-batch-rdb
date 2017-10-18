@@ -1,27 +1,20 @@
 package batch.util;
 
 import com.aries.view.extension.util.LogUtil;
-import com.aries.view.extension.util.PropertyUtil;
 
+import java.beans.PropertyVetoException;
+import java.io.IOException;
 import java.sql.*;
 
 public class DBUtility {
     public static Connection getDBConnection(String extensionId, String driverName) {
-        String url = PropertyUtil.getValue(extensionId, "url");
-        String user = PropertyUtil.getValue(extensionId, "user");
-        String password = PropertyUtil.getValue(extensionId, "password");
-
         try {
-            Class.forName(driverName);
-        } catch (ClassNotFoundException e) {
-            LogUtil.error(e.getMessage());
-        }
-
-        try {
-            if(url != null && user != null && password != null) {
-                return DriverManager.getConnection(url, user, password);
-            }
+            return DataSource.getInstance(extensionId, driverName).getConnection();
         } catch (SQLException e) {
+            LogUtil.error(e.getMessage());
+        } catch (IOException e) {
+            LogUtil.error(e.getMessage());
+        } catch (PropertyVetoException e) {
             LogUtil.error(e.getMessage());
         }
 
@@ -38,6 +31,14 @@ public class DBUtility {
 
             return true;
         } catch (SQLException e) {
+            if(dbConnection != null) {
+                try {
+                    dbConnection.rollback();
+                } catch (SQLException e1) {
+                    LogUtil.error(e.getMessage());
+                }
+            }
+
             LogUtil.error(e.getMessage());
         } finally {
             DBUtility.finallyDBConnection(dbConnection, statement);
@@ -66,8 +67,8 @@ public class DBUtility {
 
     public static String createInsertQuery(String tableName, int columnCount) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < columnCount; i++) {
-            if(i > 0) sb.append(",");
+        for (int i = 0; i < columnCount; i++) {
+            if (i > 0) sb.append(",");
             sb.append("?");
         }
 
