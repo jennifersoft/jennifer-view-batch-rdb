@@ -11,6 +11,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class DataSource {
     private static DataSource datasource;
     private static String driverClass;
+    private static String userKey;
 
     private ComboPooledDataSource cpds;
 
@@ -38,13 +39,25 @@ public class DataSource {
     }
 
     public static DataSource getInstance(String extensionId, String newDriverClass) throws IOException, SQLException, PropertyVetoException {
-        if (datasource == null || driverClass != newDriverClass) {
+        String newUserKey = createUserKey(extensionId);
+
+        if (datasource == null || !driverClass.equals(newDriverClass) || !userKey.equals(newUserKey)) {
             driverClass = newDriverClass;
+            userKey = newUserKey;
             datasource = new DataSource(extensionId, driverClass);
+
             return datasource;
         } else {
             return datasource;
         }
+    }
+
+    private static String createUserKey(String extensionId) {
+        String url = PropertyUtil.getValue(extensionId, "url");
+        String user = PropertyUtil.getValue(extensionId, "user");
+        String password = PropertyUtil.getValue(extensionId, "password");
+
+        return url + user + password;
     }
 
     public Connection getConnection() throws SQLException {
