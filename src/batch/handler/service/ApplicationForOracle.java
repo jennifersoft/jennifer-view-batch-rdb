@@ -5,7 +5,7 @@ import batch.database.OracleInfo;
 
 public class ApplicationForOracle extends ApplicationForBase {
     @Override
-    IDatabaseLegacy getDatabaseInfo() {
+    protected IDatabaseLegacy getDatabaseInfo() {
         return new OracleInfo(getExtensionId());
     }
 }

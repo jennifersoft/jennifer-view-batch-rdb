@@ -1,12 +1,44 @@
 package batch.util;
 
 import com.aries.view.extension.util.LogUtil;
+import com.aries.view.extension.util.PropertyUtil;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
 
 public class DBUtility {
+    public static boolean checkDBConnection(String extensionId, String driverName) {
+        Boolean isOK = true;
+        Connection connection = null;
+
+        try {
+            Class.forName(driverName);
+
+            connection = DriverManager.getConnection(
+                    PropertyUtil.getValue(extensionId, "url"),
+                    PropertyUtil.getValue(extensionId, "user"),
+                    PropertyUtil.getValue(extensionId, "password")
+            );
+        } catch (ClassNotFoundException e) {
+            LogUtil.error(e.getMessage());
+            isOK = false;
+        } catch (SQLException e) {
+            LogUtil.error(e.getMessage());
+            isOK = false;
+        } finally {
+            try {
+                if(connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+               LogUtil.error(e.getMessage());
+            }
+        }
+
+        return isOK;
+    }
+
     public static Connection getDBConnection(String extensionId, String driverName) {
         try {
             return DataSource.getInstance(extensionId, driverName).getConnection();

@@ -1,32 +1,24 @@
 package batch.handler.metrics;
 
-import batch.base.IDataLegacy;
-import batch.base.IDatabaseLegacy;
+import batch.handler.CommonHandler;
 import batch.util.DBUtility;
 import com.aries.view.extension.data.MetricsAsDomain;
 import com.aries.view.extension.data.Model;
-import com.aries.view.extension.handler.Batch;
 import com.aries.view.extension.util.LogUtil;
 import com.aries.view.extension.util.PropertyUtil;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-public abstract class DomainForBase implements Batch, IDataLegacy {
+public abstract class DomainForBase extends CommonHandler {
     private static String defaultTableName = null;
 
     @Override
     public boolean preHandle(long batchTime) {
-        defaultTableName = getTableName(batchTime);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+        defaultTableName = PropertyUtil.getValue(getExtensionId(), "table", "METRICS_AS_DOMAIN") + "_" + sdf.format(new Date(batchTime));
 
-        // 테이블이 존재하고, 리셋 허용이면 모든 테이블을 삭제한다.
-        if(getDatabaseInfo().existBatchTable(defaultTableName)) {
-            getDatabaseInfo().resetBatchTable(defaultTableName);
-        } else {
-            createBatchTable();
-        }
-
-        return true;
+        return initHandler(defaultTableName);
     }
 
     @Override
@@ -97,13 +89,7 @@ public abstract class DomainForBase implements Batch, IDataLegacy {
     }
 
     @Override
-    public String getTableName(long batchTime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        return PropertyUtil.getValue(getExtensionId(), "table", "METRICS_AS_DOMAIN") + "_" + sdf.format(new Date(batchTime));
-    }
-
-    @Override
-    public boolean createBatchTable() {
+    public boolean createTable() {
         String timestampColumn = getDatabaseInfo().getTimestampColumn();
         String numericColumn = getDatabaseInfo().getNumericColumn();
 
@@ -158,5 +144,4 @@ public abstract class DomainForBase implements Batch, IDataLegacy {
         return "metrics_as_domain";
     }
 
-    abstract IDatabaseLegacy getDatabaseInfo();
 }

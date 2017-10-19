@@ -16,10 +16,6 @@ public class DataSource {
     private ComboPooledDataSource cpds;
 
     private DataSource(String extensionId, String driverName) throws IOException, SQLException, PropertyVetoException {
-        String url = PropertyUtil.getValue(extensionId, "url");
-        String user = PropertyUtil.getValue(extensionId, "user");
-        String password = PropertyUtil.getValue(extensionId, "password");
-
         int minPoolSize = Integer.parseInt(PropertyUtil.getValue(extensionId, "min_pool_size", "5"));
         int acquireIncrement = Integer.parseInt(PropertyUtil.getValue(extensionId, "acquire_increment", "5"));
         int maxPoolSize = Integer.parseInt(PropertyUtil.getValue(extensionId, "max_pool_size", "20"));
@@ -27,9 +23,9 @@ public class DataSource {
 
         cpds = new ComboPooledDataSource();
         cpds.setDriverClass(driverName); //loads the jdbc driver
-        cpds.setJdbcUrl(url);
-        cpds.setUser(user);
-        cpds.setPassword(password);
+        cpds.setJdbcUrl(PropertyUtil.getValue(extensionId, "url"));
+        cpds.setUser(PropertyUtil.getValue(extensionId, "user"));
+        cpds.setPassword(PropertyUtil.getValue(extensionId, "password"));
 
         // the settings below are optional -- c3p0 can work with defaults
         cpds.setMinPoolSize(minPoolSize);
@@ -53,11 +49,9 @@ public class DataSource {
     }
 
     private static String createUserKey(String extensionId) {
-        String url = PropertyUtil.getValue(extensionId, "url");
-        String user = PropertyUtil.getValue(extensionId, "user");
-        String password = PropertyUtil.getValue(extensionId, "password");
-
-        return url + user + password;
+        return PropertyUtil.getValue(extensionId, "url") +
+            PropertyUtil.getValue(extensionId, "user") +
+            PropertyUtil.getValue(extensionId, "password");
     }
 
     public Connection getConnection() throws SQLException {

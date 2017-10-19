@@ -7,7 +7,7 @@ public interface IDatabaseLegacy {
 
     String getTimestampColumn();
 
-    boolean existBatchTable(String tableName);
+    boolean existTable(String tableName);
 
-    boolean resetBatchTable(String tableName);
+    boolean resetTable(String tableName);
 }

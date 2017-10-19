@@ -5,7 +5,7 @@ import batch.database.MssqlInfo;
 
 public class InstanceForMssql extends InstanceForBase {
     @Override
-    IDatabaseLegacy getDatabaseInfo() {
+    protected IDatabaseLegacy getDatabaseInfo() {
         return new MssqlInfo(getExtensionId());
     }
 }

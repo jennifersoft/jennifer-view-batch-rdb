@@ -32,7 +32,7 @@ public class MssqlInfo implements IDatabaseLegacy {
     }
 
     @Override
-    public boolean existBatchTable(String tableName) {
+    public boolean existTable(String tableName) {
         Connection dbConnection = DBUtility.getDBConnection(extensionId, getDriverName());
         Statement statement = null;
 
@@ -60,7 +60,7 @@ public class MssqlInfo implements IDatabaseLegacy {
     }
 
     @Override
-    public boolean resetBatchTable(String tableName) {
+    public boolean resetTable(String tableName) {
         boolean isOK = DBUtility.updateSimpleQuery(extensionId, getDriverName(), "TRUNCATE TABLE " + tableName);
         if(isOK) LogUtil.info("Table \"" + tableName +  "\" has been reset!");
 
