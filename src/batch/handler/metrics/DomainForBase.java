@@ -128,7 +128,7 @@ public abstract class DomainForBase extends CommonHandler {
                 + "AVERAGE_FRONTEND_NETWORK_TIME " + numericColumn + ", "
                 + "AVERAGE_DB_POOL_ACTIVE_COUNT " + numericColumn + ", "
                 + "AVERAGE_DB_POOL_IDLE_COUNT " + numericColumn + ", "
-                + "AVERAGE_DB_POOL_CONFIGURED_COUNT " + numericColumn + ", "
+                + "AVERAGE_DB_POOL_CONF_COUNT " + numericColumn + ", "
                 + "MAX_DB_POOL_ACTIVE_COUNT " + numericColumn + ", "
                 + "MAX_TPS " + numericColumn
                 + ")";
