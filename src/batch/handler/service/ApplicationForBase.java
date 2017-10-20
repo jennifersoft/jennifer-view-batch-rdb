@@ -107,7 +107,7 @@ public abstract class ApplicationForBase extends CommonHandler {
                 + "RESPONSE_TIME_STD " + numericColumn
                 + ")";
 
-        boolean isOK = DBUtility.updateSimpleQuery(getExtensionId(), getDatabaseInfo().getDriverName(), query);
+        boolean isOK = DBUtility.updateQuery(getExtensionId(), getDatabaseInfo().getDriverName(), query);
 
         if(isOK) LogUtil.info("Table \"" + defaultTableName + "\" is created!");
         return isOK;

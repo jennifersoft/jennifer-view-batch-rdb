@@ -53,7 +53,7 @@ public class DBUtility {
         return null;
     }
 
-    public static boolean updateSimpleQuery(String extensionId, String driverName, String query) {
+    public static boolean updateQuery(String extensionId, String driverName, String query) {
         Connection dbConnection = getDBConnection(extensionId, driverName);
         Statement statement = null;
 
@@ -77,6 +77,28 @@ public class DBUtility {
         }
 
         return false;
+    }
+
+    public static int getCountQuery(String extensionId, String driverName, String query) {
+        int count = 0;
+
+        Connection dbConnection = DBUtility.getDBConnection(extensionId, driverName);
+        Statement statement = null;
+
+        try {
+            statement = dbConnection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            if(rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            LogUtil.error(e.getMessage());
+        } finally {
+            DBUtility.finallyDBConnection(dbConnection, statement);
+        }
+
+        return count;
     }
 
     public static void finallyDBConnection(Connection dbConnection, Statement statement) {

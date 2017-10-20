@@ -4,11 +4,6 @@ import batch.base.IDatabaseLegacy;
 import batch.util.DBUtility;
 import com.aries.view.extension.util.LogUtil;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class MssqlInfo implements IDatabaseLegacy {
     private String extensionId;
 
@@ -33,35 +28,15 @@ public class MssqlInfo implements IDatabaseLegacy {
 
     @Override
     public boolean existTable(String tableName) {
-        Connection dbConnection = DBUtility.getDBConnection(extensionId, getDriverName());
-        Statement statement = null;
+        String query = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '" + tableName + "'";
+        int count = DBUtility.getCountQuery(extensionId, getDriverName(), query);
 
-        String sql = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '" + tableName + "'";
-        int rowcount = 0;
-
-        try {
-            statement = dbConnection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-
-            if(rs.next()) {
-                rowcount = rs.getInt(1);
-            }
-
-            if(rowcount == 1) {
-                return true;
-            }
-        } catch (SQLException e) {
-            LogUtil.error(e.getMessage());
-        } finally {
-            DBUtility.finallyDBConnection(dbConnection, statement);
-        }
-
-        return false;
+        return count == 1;
     }
 
     @Override
     public boolean resetTable(String tableName) {
-        boolean isOK = DBUtility.updateSimpleQuery(extensionId, getDriverName(), "TRUNCATE TABLE " + tableName);
+        boolean isOK = DBUtility.updateQuery(extensionId, getDriverName(), "TRUNCATE TABLE " + tableName);
         if(isOK) LogUtil.info("Table \"" + tableName +  "\" has been reset!");
 
         return isOK;
