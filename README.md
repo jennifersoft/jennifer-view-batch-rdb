@@ -1,6 +1,7 @@
 ## Overview
 It is an extension function to backup JENNIFER data to RDB.
 
+
 ## Getting started
 
 The first step is to register the adapter: 
@@ -11,8 +12,8 @@ The first step is to register the adapter:
 5. Enter the path to the adapter JAR file ``jennifer-view-batch-rdb.jar`` or upload the JAR file from you local machine.
 6. Enter the class name according to the data classification. Class types are discussed in detail below.
  
-
 <img src="https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_batch/1.png">
+
 
 ### ID and class name mapping table for data classification ##
 
@@ -25,7 +26,6 @@ The following table shows the required options for this adapter
 | METRICS_AS_DOMAIN | metrics_as_domain | batch.handler.metrics.DomainFor**Oracle**<br>batch.handler.metrics.DomainFor**Mssql**<br>batch.handler.metrics.DomainFor**Mysql**<br> |
 | APPLICATION_SERVICE | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
 
-<img src="https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/res/img/view_server_batch/2.png">
 
 ### Options for database connections ##
 
@@ -40,6 +40,9 @@ The following table shows the required options for this batch
 | acquire_increment | NO | 5 |
 | max_pool_size | NO | 20 |
 | max_statements | NO | 180 |
+
+<img src="https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/res/img/view_server_batch/2.png">
+
 
 ### Top toolbar description ##
 
