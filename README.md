@@ -48,5 +48,3 @@ The following table shows the required options for this batch
 | Manual Build | Daily backups can be done manually. |
 | Auto build settings | It is an automatic build related setting. |
 | Show build logs | You can view the manual and automatic build logs. |
-
-zip -d jennifer-view-batch-rdb.jar META-INF/*.RSA META-INF/*.DSA META-INF*.SF
