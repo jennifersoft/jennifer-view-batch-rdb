@@ -15,7 +15,7 @@ The first step is to register the adapter:
 6. Enter the class name according to the data classification. Class types are discussed in detail below.
  
 
-<img width="799" alt="slack_adapter_registration" src="https://user-images.githubusercontent.com/3861725/27722048-b37a96e6-5d9f-11e7-9aed-d77ce47d7b00.png">
+<img width="799" src="https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_batch/1.png">
 
 
 ### Options ##
