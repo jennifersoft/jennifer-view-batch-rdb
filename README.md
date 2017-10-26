@@ -53,7 +53,7 @@ The following table shows the required options for this batch
 | Show build logs | You can view the manual and automatic build logs. |
 
 
-## Supported version
+### Supported version ##
  
 | Adapter version           | Jennifer server version |
 | ------------- |:-------------:|
