@@ -12,7 +12,7 @@ The first step is to register the adapter:
 6. Enter the class name according to the data classification. Class types are discussed in detail below.
  
 
-<img width="799" src="https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_batch/1.png">
+<img src="https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_batch/1.png">
 
 ### ID and class name mapping table for data classification ##
 
@@ -25,19 +25,23 @@ The following table shows the required options for this adapter
 | METRICS_AS_DOMAIN | metrics_as_domain | batch.handler.metrics.DomainFor**Oracle**<br>batch.handler.metrics.DomainFor**Mssql**<br>batch.handler.metrics.DomainFor**Mysql**<br> |
 | APPLICATION_SERVICE | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
 
-### Options ##
+### Options for database connections ##
 
-The following table shows the required options for this adapter
+The following table shows the required options for this batch
 
-| Key           | Required      | Description | Example |
-| ------------- |:-------------:|:-------------:|:-------------:|
-| slack_webhook | YES           | Set Slack Incoming Webhook URL ||
-| slack_channel | YES           | Set target destination for message. <br>You can either send messages to a Slack Channel (use #)  or to a Slack User (use @).  |1. Example sending notification to channel : #monitoring <br>2.Example sending notification to  user: @bob|
-| message_color | NO            | Optional: Value to set message color using color's hex value | #551A8B
-| slack_username| NO            | Option: This will change the "From" username when receiving slack message| JENNIFER Extension
+| Key           | Required      | Default |
+| ------------- |:-------------:|:-------------:|
+| url | YES | Database connection url |
+| user | YES | |
+| password | YES | |
+| min_pool_size | NO | 5 |
+| acquire_increment | NO | 5 |
+| max_pool_size | NO | 20 |
+| max_statements | NO | 180 |
 
 
-<img width="802" alt="slack_adapter_options" src="https://user-images.githubusercontent.com/3861725/27722333-eef01af0-5da1-11e7-8235-c993c88580af.png">
+
+<img src="https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/res/img/view_server_batch/2.png">
 
 
 zip -d jennifer-view-batch-rdb.jar META-INF/*.RSA META-INF/*.DSA META-INF*.SF
