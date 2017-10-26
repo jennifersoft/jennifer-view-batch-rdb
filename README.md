@@ -25,6 +25,8 @@ The following table shows the required options for this adapter
 | METRICS_AS_DOMAIN | metrics_as_domain | batch.handler.metrics.DomainFor**Oracle**<br>batch.handler.metrics.DomainFor**Mssql**<br>batch.handler.metrics.DomainFor**Mysql**<br> |
 | APPLICATION_SERVICE | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
 
+<img src="https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/res/img/view_server_batch/2.png">
+
 ### Options for database connections ##
 
 The following table shows the required options for this batch
@@ -46,8 +48,5 @@ The following table shows the required options for this batch
 | Manual Build | Daily backups can be done manually. |
 | Auto build settings | It is an automatic build related setting. |
 | Show build logs | You can view the manual and automatic build logs. |
-
-<img src="https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/res/img/view_server_batch/2.png">
-
 
 zip -d jennifer-view-batch-rdb.jar META-INF/*.RSA META-INF/*.DSA META-INF*.SF
