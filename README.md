@@ -33,7 +33,7 @@ The following table shows the required options for this batch
 
 | Key           | Required      | Default |
 | ------------- |:-------------:|:-------------:|
-| url | YES | Database connection url |
+| url | YES | |
 | user | YES | |
 | password | YES | |
 | min_pool_size | NO | 5 |
