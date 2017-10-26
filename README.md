@@ -1,6 +1,3 @@
-## Important Notice
-Please use the **`old`** branch if you are using JENNIFER Server prior to **`5.3.0.8`** 
-
 ## Overview
 It is an extension function to backup JENNIFER data to RDB.
 
@@ -17,6 +14,16 @@ The first step is to register the adapter:
 
 <img width="799" src="https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_batch/1.png">
 
+### ID and class name mapping table for data classification ##
+
+The following table shows the required options for this adapter
+
+| Classification | ID | Class names |
+| ------------- |:-------------:|:-------------:|
+| METRICS_AS_INSTANCE | metrics_as_instance | batch.handler.metrics.InstanceFor**Oracle**<br>batch.handler.metrics.InstanceFor**Mssql**<br>batch.handler.metrics.InstanceFor**Mysql**<br> |
+| METRICS_AS_BUSINESS | metrics_as_business | batch.handler.metrics.BusinessFor**Oracle**<br>batch.handler.metrics.BusinessFor**Mssql**<br>batch.handler.metrics.BusinessFor**Mysql**<br> |
+| METRICS_AS_DOMAIN | metrics_as_domain | batch.handler.metrics.DomainFor**Oracle**<br>batch.handler.metrics.DomainFor**Mssql**<br>batch.handler.metrics.DomainFor**Mysql**<br> |
+| APPLICATION_SERVICE | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
 
 ### Options ##
 
