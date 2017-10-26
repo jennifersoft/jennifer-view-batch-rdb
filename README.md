@@ -51,3 +51,10 @@ The following table shows the required options for this batch
 | Manual Build | Daily backups can be done manually. |
 | Auto build settings | It is an automatic build related setting. |
 | Show build logs | You can view the manual and automatic build logs. |
+
+
+## Supported version
+ 
+| Adapter version           | Jennifer server version |
+| ------------- |:-------------:|
+| ALL       | Greater than or equal to version 5.3.0.8 |
