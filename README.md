@@ -39,7 +39,13 @@ The following table shows the required options for this batch
 | max_pool_size | NO | 20 |
 | max_statements | NO | 180 |
 
+### Top toolbar description ##
 
+| Name | Description |
+| ------------- |:-------------:|
+| Manual Build | Daily backups can be done manually. |
+| Auto build settings | It is an automatic build related setting. |
+| Show build logs | You can view the manual and automatic build logs. |
 
 <img src="https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/res/img/view_server_batch/2.png">
 
