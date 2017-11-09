@@ -8,13 +8,15 @@ import com.aries.view.extension.handler.Batch;
 public abstract class CommonHandler implements Batch, IDataLegacy {
     protected boolean initHandler(String tableName) {
         if(DBUtility.checkDBConnection(getExtensionId(), getDatabaseInfo().getDriverName())) {
+            boolean isOK = true;
+
             if(getDatabaseInfo().existTable(tableName)) {
                 getDatabaseInfo().resetTable(tableName);
             } else {
-                createTable();
+                isOK = createTable();
             }
 
-            return true;
+            return isOK;
         }
 
         return false;
