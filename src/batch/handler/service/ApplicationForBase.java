@@ -16,7 +16,7 @@ public abstract class ApplicationForBase extends CommonHandler {
     @Override
     public boolean preHandle(long batchTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        defaultTableName = PropertyUtil.getValue(getExtensionId(), "table", "APPLICATION_SERVICE") + "_" + sdf.format(new Date(batchTime));
+        defaultTableName = PropertyUtil.getValue(getExtensionId(), "table", "APPLICATION_SERVICE_V2") + "_" + sdf.format(new Date(batchTime));
 
         return initHandler(defaultTableName);
     }
@@ -24,7 +24,7 @@ public abstract class ApplicationForBase extends CommonHandler {
     @Override
     public void process(Model[] models) {
         long time = System.currentTimeMillis();
-        String query = DBUtility.createInsertQuery(defaultTableName, 23);
+        String query = DBUtility.createInsertQuery(defaultTableName, 24);
 
         Connection dbConnection = null;
         PreparedStatement statement = null;
@@ -42,25 +42,26 @@ public abstract class ApplicationForBase extends CommonHandler {
                 statement.setString(2, data.getDomainName());
                 statement.setInt(3, data.getInstanceId());
                 statement.setString(4, data.getInstanceName());
-                statement.setString(5, (name.length() > 500) ? name.substring(0, 500) : name);
-                statement.setLong(6, data.getCallCount());
-                statement.setDouble(7, data.getResponseTime());
-                statement.setLong(8, data.getFailureCount());
-                statement.setLong(9, data.getBadResponseCount());
-                statement.setDouble(10, data.getSqlCountPerTransaction());
-                statement.setDouble(11, data.getSqlTimePerTransaction());
-                statement.setLong(12, data.getSqlTimeSum());
-                statement.setDouble(13, data.getExternalCallCountPerTransaction());
-                statement.setDouble(14, data.getExternalCallTimePerTransaction());
-                statement.setLong(15, data.getExternalCallTimeSum());
-                statement.setDouble(16, data.getFetchTimePerTransaction());
-                statement.setDouble(17, data.getFrontEndTimePerTransaction());
-                statement.setDouble(18, data.getFrontEndNetworkTimePerTransaction());
-                statement.setDouble(19, data.getCpuTimePerTransaction());
-                statement.setDouble(20, data.getFrontEndMeasureCount());
-                statement.setDouble(21, data.getMethodTimePerTransaction());
-                statement.setLong(22, data.getMaxResponseTime());
-                statement.setDouble(23, data.getResponseTimeStandardDeviation());
+                statement.setInt(5, data.getSearchHour());
+                statement.setString(6, (name.length() > 500) ? name.substring(0, 500) : name);
+                statement.setLong(7, data.getCallCount());
+                statement.setDouble(8, data.getResponseTime());
+                statement.setLong(9, data.getFailureCount());
+                statement.setLong(10, data.getBadResponseCount());
+                statement.setDouble(11, data.getSqlCountPerTransaction());
+                statement.setDouble(12, data.getSqlTimePerTransaction());
+                statement.setLong(13, data.getSqlTimeSum());
+                statement.setDouble(14, data.getExternalCallCountPerTransaction());
+                statement.setDouble(15, data.getExternalCallTimePerTransaction());
+                statement.setLong(16, data.getExternalCallTimeSum());
+                statement.setDouble(17, data.getFetchTimePerTransaction());
+                statement.setDouble(18, data.getFrontEndTimePerTransaction());
+                statement.setDouble(19, data.getFrontEndNetworkTimePerTransaction());
+                statement.setDouble(20, data.getCpuTimePerTransaction());
+                statement.setDouble(21, data.getFrontEndMeasureCount());
+                statement.setDouble(22, data.getMethodTimePerTransaction());
+                statement.setLong(23, data.getMaxResponseTime());
+                statement.setDouble(24, data.getResponseTimeStandardDeviation());
 
                 statement.addBatch();
                 statement.clearParameters();
@@ -86,6 +87,7 @@ public abstract class ApplicationForBase extends CommonHandler {
                 + "DOMAIN_NAME VARCHAR(20), "
                 + "INSTANCE_ID " + numericColumn + ", "
                 + "INSTANCE_NAME VARCHAR(20), "
+                + "SEARCH_HOUR " + numericColumn + ", "
                 + "APPLICATION_NAME VARCHAR(500), "
                 + "CALL_COUNT " + numericColumn + ", "
                 + "RESPONSE_TIME " + numericColumn + ", "
