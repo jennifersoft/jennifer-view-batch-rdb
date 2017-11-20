@@ -95,7 +95,7 @@ public abstract class DomainForBase extends CommonHandler {
 
         String query = "CREATE TABLE " + defaultTableName + "("
                 + "DOMAIN_ID " + numericColumn +  ", "
-                + "DOMAIN_NAME VARCHAR(20), "
+                + "DOMAIN_NAME VARCHAR(50), "
                 + "STANDARD_TIME " + timestampColumn + ", "
                 + "ALIVE_INSTANCE_COUNT " + numericColumn + ", "
                 + "SERVICE_COUNT " + numericColumn + ", "

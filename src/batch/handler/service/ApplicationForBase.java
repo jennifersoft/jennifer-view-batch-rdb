@@ -42,7 +42,7 @@ public abstract class ApplicationForBase extends CommonHandler {
                 statement.setString(2, data.getDomainName());
                 statement.setInt(3, data.getInstanceId());
                 statement.setString(4, data.getInstanceName());
-                statement.setInt(5, data.getSearchHour());
+                statement.setTimestamp(5, new Timestamp(data.getStandardTime()));
                 statement.setString(6, (name.length() > 500) ? name.substring(0, 500) : name);
                 statement.setLong(7, data.getCallCount());
                 statement.setDouble(8, data.getResponseTime());
@@ -80,14 +80,15 @@ public abstract class ApplicationForBase extends CommonHandler {
 
     @Override
     public boolean createTable() {
+        String timestampColumn = getDatabaseInfo().getTimestampColumn();
         String numericColumn = getDatabaseInfo().getNumericColumn();
 
         String query = "CREATE TABLE " + defaultTableName + "("
                 + "DOMAIN_ID " + numericColumn + ", "
-                + "DOMAIN_NAME VARCHAR(20), "
+                + "DOMAIN_NAME VARCHAR(50), "
                 + "INSTANCE_ID " + numericColumn + ", "
-                + "INSTANCE_NAME VARCHAR(20), "
-                + "SEARCH_HOUR " + numericColumn + ", "
+                + "INSTANCE_NAME VARCHAR(50), "
+                + "STANDARD_TIME " + timestampColumn + ", "
                 + "APPLICATION_NAME VARCHAR(500), "
                 + "CALL_COUNT " + numericColumn + ", "
                 + "RESPONSE_TIME " + numericColumn + ", "

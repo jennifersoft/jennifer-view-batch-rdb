@@ -91,9 +91,9 @@ public abstract class BusinessForBase extends CommonHandler {
 
         String query = "CREATE TABLE " + defaultTableName + "("
                 + "DOMAIN_ID " + numericColumn +  ", "
-                + "DOMAIN_NAME VARCHAR(20), "
+                + "DOMAIN_NAME VARCHAR(50), "
                 + "BUSINESS_ID " + numericColumn + ", "
-                + "BUSINESS_NAME VARCHAR(20), "
+                + "BUSINESS_NAME VARCHAR(50), "
                 + "STANDARD_TIME " + timestampColumn + ", "
                 + "SERVICE_COUNT " + numericColumn + ", "
                 + "SERVICE_TIME " + numericColumn + ", "

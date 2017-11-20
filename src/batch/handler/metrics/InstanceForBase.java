@@ -116,9 +116,9 @@ public abstract class InstanceForBase extends CommonHandler {
 
         String query = "CREATE TABLE " + defaultTableName + "("
                 + "DOMAIN_ID " + numericColumn + ", "
-                + "DOMAIN_NAME VARCHAR(20), "
+                + "DOMAIN_NAME VARCHAR(50), "
                 + "INSTANCE_ID " + numericColumn + ", "
-                + "INSTANCE_NAME VARCHAR(20), "
+                + "INSTANCE_NAME VARCHAR(50), "
                 + "STANDARD_TIME " + timestampColumn + ", "
                 + "GC_TIME " + numericColumn + ", "
                 + "GC_COUNT " + numericColumn + ", "
