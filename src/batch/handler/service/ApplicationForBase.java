@@ -5,20 +5,16 @@ import batch.util.DBUtility;
 import com.aries.view.extension.data.ApplicationService;
 import com.aries.view.extension.data.Model;
 import com.aries.view.extension.util.LogUtil;
-import com.aries.view.extension.util.PropertyUtil;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 
 public abstract class ApplicationForBase extends CommonHandler {
     private static String defaultTableName = null;
 
     @Override
     public boolean preHandle(long batchTime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        defaultTableName = PropertyUtil.getValue(getExtensionId(), "table", "APPLICATION_SERVICE_V2") + "_" + sdf.format(new Date(batchTime));
-
-        return initHandler(defaultTableName);
+        defaultTableName = createTableName(batchTime, "APPLICATION_SERVICE_V2");
+        return initHandler(batchTime, defaultTableName);
     }
 
     @Override
@@ -110,10 +106,7 @@ public abstract class ApplicationForBase extends CommonHandler {
                 + "RESPONSE_TIME_STD " + numericColumn
                 + ")";
 
-        boolean isOK = DBUtility.updateQuery(getExtensionId(), getDatabaseInfo().getDriverName(), query);
-
-        if(isOK) LogUtil.info("Table \"" + defaultTableName + "\" is created!");
-        return isOK;
+        return DBUtility.updateQuery(getExtensionId(), getDatabaseInfo().getDriverName(), query);
     }
 
     @Override

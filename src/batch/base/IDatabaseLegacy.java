@@ -9,5 +9,5 @@ public interface IDatabaseLegacy {
 
     boolean existTable(String tableName);
 
-    boolean resetTable(String tableName);
+    boolean resetTable(String tableName, long batchTime);
 }

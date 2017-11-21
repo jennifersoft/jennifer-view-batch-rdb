@@ -4,6 +4,9 @@ import batch.base.IDatabaseLegacy;
 import batch.util.DBUtility;
 import com.aries.view.extension.util.LogUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class OracleInfo implements IDatabaseLegacy {
     private String extensionId;
 
@@ -35,9 +38,16 @@ public class OracleInfo implements IDatabaseLegacy {
     }
 
     @Override
-    public boolean resetTable(String tableName) {
-        boolean isOK = DBUtility.updateQuery(extensionId, getDriverName(), "TRUNCATE TABLE " + tableName);
-        if(isOK) LogUtil.info("Table \"" + tableName +  "\" has been reset!");
+    public boolean resetTable(String tableName, long batchTime) {
+        boolean isOK;
+
+        if(batchTime == -1) {
+            isOK = DBUtility.updateQuery(extensionId, getDriverName(), "TRUNCATE TABLE " + tableName);
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            isOK = DBUtility.updateQuery(extensionId, getDriverName(),
+                    "DELETE FROM " + tableName + " WHERE TO_CHAR(STANDARD_TIME, 'YYYYMMDD')='" + sdf.format(new Date(batchTime)) + "'");
+        }
 
         return isOK;
     }
