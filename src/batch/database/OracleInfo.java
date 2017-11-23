@@ -2,7 +2,6 @@ package batch.database;
 
 import batch.base.IDatabaseLegacy;
 import batch.util.DBUtility;
-import com.aries.view.extension.util.LogUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,10 +44,21 @@ public class OracleInfo implements IDatabaseLegacy {
             isOK = DBUtility.updateQuery(extensionId, getDriverName(), "TRUNCATE TABLE " + tableName);
         } else {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            String indexName = "IDX_" + tableName;
+
             isOK = DBUtility.updateQuery(extensionId, getDriverName(),
-                    "DELETE FROM " + tableName + " WHERE TO_CHAR(STANDARD_TIME, 'YYYYMMDD')='" + sdf.format(new Date(batchTime)) + "'");
+                    "DELETE /*+ INDEX(" + tableName + " " + indexName + ") */ FROM " + tableName +
+                            " WHERE TO_CHAR(STANDARD_TIME, 'YYYYMMDD')='" + sdf.format(new Date(batchTime)) + "'");
         }
 
         return isOK;
+    }
+
+    @Override
+    public boolean createIndex(String tableName) {
+        String indexName = "IDX_" + tableName;
+
+        return DBUtility.updateQuery(extensionId, getDriverName(), "CREATE INDEX " + indexName + " ON " + tableName +
+                "(TO_CHAR(STANDARD_TIME, 'YYYYMMDD'))");
     }
 }

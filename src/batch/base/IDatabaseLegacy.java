@@ -10,4 +10,6 @@ public interface IDatabaseLegacy {
     boolean existTable(String tableName);
 
     boolean resetTable(String tableName, long batchTime);
+
+    boolean createIndex(String tableName);
 }

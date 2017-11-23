@@ -13,7 +13,7 @@ public abstract class DomainForBase extends CommonHandler {
 
     @Override
     public boolean preHandle(long batchTime) {
-        defaultTableName = createTableName(batchTime, "METRICS_AS_DOMAIN");
+        defaultTableName = createTableName(batchTime, "MX_AS_DOMAIN");
         return initHandler(batchTime, defaultTableName);
     }
 

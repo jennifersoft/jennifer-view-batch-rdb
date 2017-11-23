@@ -2,7 +2,6 @@ package batch.database;
 
 import batch.base.IDatabaseLegacy;
 import batch.util.DBUtility;
-import com.aries.view.extension.util.LogUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,5 +49,10 @@ public class MysqlInfo implements IDatabaseLegacy {
         }
 
         return isOK;
+    }
+
+    @Override
+    public boolean createIndex(String tableName) {
+        return false;
     }
 }

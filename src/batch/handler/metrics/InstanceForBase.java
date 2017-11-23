@@ -13,7 +13,7 @@ public abstract class InstanceForBase extends CommonHandler {
 
     @Override
     public boolean preHandle(long batchTime) {
-        defaultTableName = createTableName(batchTime, "METRICS_AS_INSTANCE");
+        defaultTableName = createTableName(batchTime, "MX_AS_INSTANCE");
         return initHandler(batchTime, defaultTableName);
     }
 
