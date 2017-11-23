@@ -24,7 +24,8 @@ The following table shows the required options for this adapter
 | METRICS_AS_INSTANCE | metrics_as_instance | batch.handler.metrics.InstanceFor**Oracle**<br>batch.handler.metrics.InstanceFor**Mssql**<br>batch.handler.metrics.InstanceFor**Mysql**<br> |
 | METRICS_AS_BUSINESS | metrics_as_business | batch.handler.metrics.BusinessFor**Oracle**<br>batch.handler.metrics.BusinessFor**Mssql**<br>batch.handler.metrics.BusinessFor**Mysql**<br> |
 | METRICS_AS_DOMAIN | metrics_as_domain | batch.handler.metrics.DomainFor**Oracle**<br>batch.handler.metrics.DomainFor**Mssql**<br>batch.handler.metrics.DomainFor**Mysql**<br> |
-| APPLICATION_SERVICE | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
+| APPLICATION_SERVICE_DAILY | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
+| APPLICATION_SERVICE_HOURLY | application_service | batch.handler.service.ApplicationFor**Oracle**<br>batch.handler.service.ApplicationFor**Mssql**<br>batch.handler.service.ApplicationFor**Mysql**<br> |
 
 
 ### Options for database connections ##
@@ -36,6 +37,7 @@ The following table shows the required options for this batch
 | url | YES | |
 | user | YES | |
 | password | YES | |
+| unique_table | NO | false |
 | min_pool_size | NO | 5 |
 | acquire_increment | NO | 5 |
 | max_pool_size | NO | 20 |
@@ -57,4 +59,5 @@ The following table shows the required options for this batch
  
 | Adapter version           | Jennifer server version |
 | ------------- |:-------------:|
-| ALL       | Greater than or equal to version 5.3.0.8 |
+| 0.0.4       | Greater than or equal to version 5.3.0.8 |
+| 0.0.6       | Greater than or equal to version 5.3.0.13 |
