@@ -26,8 +26,10 @@ public abstract class CommonHandler implements Batch, IDataLegacy {
                 if(isOK) {
                     LogUtil.info("Table \"" + tableName + "\" is created!");
 
-                    if(getDatabaseInfo().createIndex(tableName)) {
-                        LogUtil.info("Index \"" + tableName + "\" is created!");
+                    if(isUniqueTable()) {
+                        if(getDatabaseInfo().createIndex(tableName)) {
+                            LogUtil.info("Index \"" + tableName + "\" is created!");
+                        }
                     }
                 }
                 else LogUtil.info("Table creation failed!");

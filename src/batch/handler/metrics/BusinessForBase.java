@@ -13,7 +13,7 @@ public abstract class BusinessForBase extends CommonHandler {
 
     @Override
     public boolean preHandle(long batchTime) {
-        defaultTableName = createTableName(batchTime, "MX_AS_BUSINESS");
+        defaultTableName = createTableName(batchTime, "METRICS_AS_BUSINESS");
         return initHandler(batchTime, defaultTableName);
     }
 

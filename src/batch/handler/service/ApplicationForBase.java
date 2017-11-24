@@ -13,7 +13,7 @@ public abstract class ApplicationForBase extends CommonHandler {
 
     @Override
     public boolean preHandle(long batchTime) {
-        defaultTableName = createTableName(batchTime, "APP_SERVICE");
+        defaultTableName = createTableName(batchTime, "APPLICATION_SERVICE");
         return initHandler(batchTime, defaultTableName);
     }
 
