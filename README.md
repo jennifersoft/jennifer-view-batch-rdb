@@ -37,6 +37,7 @@ The following table shows the required options for this batch
 | url | YES | |
 | user | YES | |
 | password | YES | |
+| table_name | NO | |
 | unique_table | NO | false |
 | min_pool_size | NO | 5 |
 | acquire_increment | NO | 5 |
