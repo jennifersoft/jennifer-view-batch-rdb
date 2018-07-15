@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <project name="build" basedir=".">
-    <property name="build.dir" value="out/artifacts/jennifer_view_batch_rdb_jar/" />
+    <property name="build.dir" value="dist/" />
 
-    <target name="run">
+    <target name="after-pom">
         <sleep seconds="1"/>
         <exec dir="${build.dir}" executable="zip">
             <arg value="-d"/>
-            <arg value="jennifer-view-batch-rdb.jar"/>
+            <arg value="rdb-0.0.6.jar"/>
             <arg value="META-INF/*.RSA"/>
             <arg value="META-INF/*.DSA"/>
             <arg value="META-INF*.SF"/>
