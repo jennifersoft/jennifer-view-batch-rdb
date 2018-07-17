@@ -5,7 +5,7 @@ It is an extension function to backup JENNIFER data to RDB.
 ## Getting started
 
 The first step is to register the adapter: 
-1. In JENNIFER Client, open the management area and Navigate to  **Extension and Notice** > **Adapter and Plugin**
+1. In JENNIFER Client, open the management area and Navigate to  **Extension and Notice** > **Adapter and Plugin** > **Backup**
 2. Make sure the adapter tab is selected then click the **[+Add]** button
 3. Select the data classification.
 4. Enter an ID according to the data classification. The ID types are discussed in detail below.
