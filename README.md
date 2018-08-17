@@ -5,11 +5,11 @@ It is an extension function to backup JENNIFER data to RDB.
 ## Getting started
 
 The first step is to register the adapter: 
-1. In JENNIFER Client, open the management area and Navigate to  **Extension and Notice** > **Adapter and Plugin**
+1. In JENNIFER Client, open the management area and Navigate to  **Extension and Notice** > **Adapter and Plugin** > **Backup**
 2. Make sure the adapter tab is selected then click the **[+Add]** button
 3. Select the data classification.
 4. Enter an ID according to the data classification. The ID types are discussed in detail below.
-5. Enter the path to the adapter JAR file ``jennifer-view-batch-rdb.jar`` or upload the JAR file from you local machine.
+5. Enter the path to the adapter JAR file ``rdb-0.0.6.jar`` or upload the JAR file from you local machine.
 6. Enter the class name according to the data classification. Class types are discussed in detail below.
  
 <img src="https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_batch/1.png">
