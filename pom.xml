@@ -5,7 +5,7 @@
 
     <groupId>com.aries.batch</groupId>
     <artifactId>rdb</artifactId>
-    <version>0.0.6</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>Batch RDB</name>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.aries</groupId>
             <artifactId>extension</artifactId>
-            <version>1.0.9</version>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 
