@@ -6,7 +6,7 @@
         <sleep seconds="1"/>
         <exec dir="${build.dir}" executable="zip">
             <arg value="-d"/>
-            <arg value="rdb-0.0.6.jar"/>
+            <arg value="rdb-0.1.0.jar"/>
             <arg value="META-INF/*.RSA"/>
             <arg value="META-INF/*.DSA"/>
             <arg value="META-INF*.SF"/>
